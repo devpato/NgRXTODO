@@ -9,7 +9,10 @@ const bluebird = require('bluebird');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 
-mongoose.Promise = bluebir;
+// Get the API route ...
+var api = require('./routes/api.route');
+
+mongoose.Promise = bluebird;
 
 const app = express();
 
@@ -25,6 +28,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+
+//Use the API routes for all routes matching /api
+app.use('/api', api);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
