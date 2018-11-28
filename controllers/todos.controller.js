@@ -1,6 +1,6 @@
 // Accessing the Service that we just created
 
-const TodoService = require('../services/todos.service');
+const TodoService = require('../services/todo.service');
 
 // Saving the context of this module inside the _the constiable
 
