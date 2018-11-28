@@ -1,13 +1,14 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const mongoose = require('mongoose');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
 
-var app = express();
+const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -39,3 +40,32 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
+
+//DB Conection
+
+//Set up default mongoose connection
+const mongoDB = 'mongodb+srv://admin:admin@test-o6s99.mongodb.net/test';
+mongoose
+  .connect(
+    mongoDB,
+    { useNewUrlParser: true }
+  )
+  .then(() => {
+    console.log(
+      `Succesfully Connected to the Mongodb Database  at URL : test-o6s99.mongodb.net`
+    );
+  })
+  .catch(() => {
+    console.log(
+      `Error Connecting to the Mongodb Database at URL : test-o6s99.mongodb.net`
+    );
+  });
+
+// Get Mongoose to use the global promise library
+mongoose.Promise = global.Promise;
+//Get the default connection
+const db = mongoose.connection;
+ß;
+
+//Bind connection to error event (to get notification of connection errors)
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
