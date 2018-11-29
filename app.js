@@ -61,9 +61,10 @@ module.exports = app;
 
 //Set up default mongoose connection
 mongoose.Promise = bluebird;
+const MONGO_DB = "mongodb+srv://adminRW:adminRW@todo-fnddg.mongodb.net/test";
 mongoose
   .connect(
-    "mongodb+srv://adminRW:adminRW@todo-fnddg.mongodb.net/test",
+    MONGO_DB,
     { useNewUrlParser: true }
   )
   .then(() => {
