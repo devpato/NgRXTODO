@@ -1,6 +1,6 @@
 // Gettign the Newly created Mongoose Model we just created
 
-const ToDo = require('../models/todo.model');
+const ToDo = require("../models/todo.model");
 
 // Saving the context of this module inside the _the constiable
 _this = this;
@@ -26,7 +26,7 @@ exports.getTodos = async function(query, page, limit) {
   } catch (e) {
     // return a Error message describing the reason
 
-    throw Error('Error while Paginating Todos');
+    throw Error("Error while Paginating Todos");
   }
 };
 
@@ -49,7 +49,7 @@ exports.createTodo = async function(todo) {
   } catch (e) {
     // return a Error message describing the reason
 
-    throw Error('Error while Creating Todo');
+    throw Error("Error while Creating Todo");
   }
 };
 
@@ -58,10 +58,9 @@ exports.updateTodo = async function(todo) {
 
   try {
     //Find the old Todo Object by the Id
-
-    const oldTodo = await ToDo.findById(id);
+    var oldTodo = await ToDo.findById(id);
   } catch (e) {
-    throw Error('Error occured while Finding the Todo');
+    throw Error("Error occured while Finding the Todo");
   }
 
   // If no old Todo Object exists return false
@@ -81,10 +80,10 @@ exports.updateTodo = async function(todo) {
   console.log(oldTodo);
 
   try {
-    const savedTodo = await oldTodo.save();
+    let savedTodo = await oldTodo.save();
     return savedTodo;
   } catch (e) {
-    throw Error('And Error occured while updating the Todo');
+    throw Error("And Error occured while updating the Todo");
   }
 };
 
@@ -92,12 +91,12 @@ exports.deleteTodo = async function(id) {
   // Delete the Todo
 
   try {
-    const deleted = await ToDo.remove({ _id: id });
+    const deleted = await ToDo.deleteOne({ _id: id });
     if (deleted.result.n === 0) {
-      throw Error('Todo Could not be deleted');
+      throw Error("Todo Could not be deleted");
     }
     return deleted;
   } catch (e) {
-    throw Error('Error Occured while Deleting the Todo');
+    throw Error("Error Occured while Deleting the Todo");
   }
 };

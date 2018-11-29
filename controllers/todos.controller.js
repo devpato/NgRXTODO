@@ -1,6 +1,6 @@
 // Accessing the Service that we just created
 
-const TodoService = require('../services/todo.service');
+const TodoService = require("../services/todo.service");
 
 // Saving the context of this module inside the _the constiable
 
@@ -22,7 +22,7 @@ exports.getTodos = async function(req, res, next) {
     return res.status(200).json({
       status: 200,
       data: todos,
-      message: 'Succesfully Todos Recieved'
+      message: "Succesfully Todos Recieved"
     });
   } catch (e) {
     //Return an Error Response Message with Code and the Error Message.
@@ -47,14 +47,14 @@ exports.createTodo = async function(req, res, next) {
     return res.status(201).json({
       status: 201,
       data: createdTodo,
-      message: 'Succesfully Created ToDo'
+      message: "Succesfully Created ToDo"
     });
   } catch (e) {
     //Return an Error Response Message with Code and the Error Message.
 
     return res
       .status(400)
-      .json({ status: 400, message: 'Todo Creation was Unsuccesfull' });
+      .json({ status: 400, message: "Todo Creation was Unsuccesfull" });
   }
 };
 
@@ -62,7 +62,7 @@ exports.updateTodo = async function(req, res, next) {
   // Id is necessary for the update
 
   if (!req.body._id) {
-    return res.status(400).json({ status: 400, message: 'Id must be present' });
+    return res.status(400).json({ status: 400, message: "Id must be present" });
   }
 
   const id = req.body._id;
@@ -81,7 +81,7 @@ exports.updateTodo = async function(req, res, next) {
     return res.status(200).json({
       status: 200,
       data: updatedTodo,
-      message: 'Succesfully Updated Tod'
+      message: "Succesfully Updated Tod"
     });
   } catch (e) {
     return res.status(400).json({ status: 400, message: e.message });
@@ -95,7 +95,7 @@ exports.removeTodo = async function(req, res, next) {
     const deleted = await TodoService.deleteTodo(id);
     return res
       .status(204)
-      .json({ status: 204, message: 'Succesfully Todo Deleted' });
+      .json({ status: 204, message: "Succesfully Todo Deleted" });
   } catch (e) {
     return res.status(400).json({ status: 400, message: e.message });
   }

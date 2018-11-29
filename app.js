@@ -61,7 +61,7 @@ module.exports = app;
 
 //Set up default mongoose connection
 mongoose.Promise = bluebird;
-const MONGO_DB = "mongodb+srv://adminRW:adminRW@todo-fnddg.mongodb.net/test";
+const MONGO_DB = "mongodb+srv://adminRW:adminrw@todo-fnddg.mongodb.net/todo";
 mongoose
   .connect(
     MONGO_DB,
@@ -69,11 +69,11 @@ mongoose
   )
   .then(() => {
     console.log(`Succesfully Connected to the
-Mongodb Database  at URL : mongodb://127.0.0.1:27017/todoapp`);
+Mongodb Database  at URL : todo-fnddg`);
   })
   .catch(() => {
     console.log(`Error Connecting to the Mongodb 
-Database at URL : mongodb://127.0.0.1:27017/todoapp`);
+Database at URL : todo-fnddg`);
   });
 
 const db = mongoose.connection;
