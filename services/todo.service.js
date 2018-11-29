@@ -80,7 +80,7 @@ exports.updateTodo = async function(todo) {
   console.log(oldTodo);
 
   try {
-    let savedTodo = await oldTodo.save();
+    const savedTodo = await oldTodo.save();
     return savedTodo;
   } catch (e) {
     throw Error("And Error occured while updating the Todo");
